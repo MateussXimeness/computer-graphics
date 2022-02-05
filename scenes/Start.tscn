@@ -1,0 +1,154 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Cenários/START/fundo.png" type="Texture" id=1]
+[ext_resource path="res://Cenários/START/frente.png" type="Texture" id=2]
+[ext_resource path="res://Cenários/START/magoreal-removebg-preview.png" type="Texture" id=3]
+[ext_resource path="res://fontes/bahnschrift.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://scripts/Start.gd" type="Script" id=5]
+[ext_resource path="res://Cenários/START/magos-removebg-preview.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "animar_fundo"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.12187, 0.898287 ), Vector2( 0.8, 0.898 ), Vector2( 1.12187, 0.898287 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite4:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.58, 0.4 ), Vector2( 0.7, 0.5 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "anim_logo"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite4:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+outline_color = Color( 0.992157, 1, 0.0117647, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "animar_texto"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1e-05 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "aniamr_color"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Start" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 2.2449 )
+scale = Vector2( 1.20265, 1.24554 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 523.067, 316.534 )
+scale = Vector2( 1.0423, 1.03747 )
+texture = ExtResource( 2 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+light_mask = -2147475451
+position = Vector2( 257.044, 418.678 )
+scale = Vector2( 1.12187, 0.898287 )
+texture = ExtResource( 3 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+light_mask = -2147475451
+position = Vector2( 801.286, 407.854 )
+scale = Vector2( 0.58, 0.4 )
+texture = ExtResource( 6 )
+offset = Vector2( -28.8765, 10.5809 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "animar_fundo"
+anims/animar_fundo = SubResource( 1 )
+
+[node name="anim_logo" type="AnimationPlayer" parent="."]
+anims/anim_logo = SubResource( 5 )
+
+[node name="texto" type="Node2D" parent="."]
+position = Vector2( 290.753, 479.837 )
+
+[node name="start" type="Label" parent="texto"]
+margin_right = 445.0
+margin_bottom = 62.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.898039, 1, 0, 1 )
+text = "PRESSIONE UMA TECLA PARA COMEÇAR"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim_texto" type="AnimationPlayer" parent="texto"]
+anims/animar_texto = SubResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 3.36737
+margin_top = 5.6123
+margin_right = 1022.37
+margin_bottom = 602.612
+color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim_color" type="AnimationPlayer" parent="ColorRect"]
+anims/aniamr_color = SubResource( 4 )
