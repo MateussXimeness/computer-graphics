@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Computação Grafica"
-run/main_scene="res://scenes/Mundo.tscn"
+run/main_scene="res://src/Scenes/TestLevel/TestLevel.tscn"
 config/icon="res://icon.png"
 
 [display]
