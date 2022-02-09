@@ -1,6 +1,21 @@
 extends Actor
 class_name Player
 
+enum State { IDLE = 0, JUMP, RUN, ROLL, ATTACK, DEFEND, DEATH }
+enum Direction { LEFT = 0, RIGHT , IN_PLACE }
+
+export var life: int = 5
+export var defence: int = 10
+export var damage: int = 8
+
+var state: int = State.IDLE
+var direction: int = Direction.RIGHT
+var _currentAnimationName: String = idle
+
+onready var _animation = $AnimationPlayer
+onready var _sprite = $spriteNode
+onready var _collision = $CollisionShape2D
+
 const idle: String = "idle"
 const jump: String = "jump"
 const attack: String = "attack"
@@ -8,16 +23,6 @@ const defend: String = "defend"
 const death: String = "death"
 const roll: String = "roll"
 const run: String = "run"
-
-export var life: int = 5
-export var defence: int = 10
-export var damage: int = 8
-
-var _currentAnimationName: String = idle
-
-onready var _animation = $AnimationPlayer
-onready var _sprite = $spriteNode
-onready var _collision = $CollisionShape2D
 
 func _ready():
 	_animation.play("idle")
