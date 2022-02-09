@@ -6,7 +6,7 @@
 [sub_resource type="AnimatedTexture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.07246, 14.9909 )
+extents = Vector2( 4.16667, 14.9909 )
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -43,7 +43,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=7]
 resource_name = "death"
 length = 1.4
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("spriteNode:frame")
 tracks/0/interp = 1
@@ -59,8 +58,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=8]
 resource_name = "defend"
-length = 0.8
-loop = true
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("spriteNode:frame")
 tracks/0/interp = 1
@@ -68,10 +66,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 61, 67 ]
+"values": [ 64, 67 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -94,7 +92,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=9]
 resource_name = "jump"
 length = 1.2
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("spriteNode:frame")
 tracks/0/interp = 1
@@ -105,13 +102,12 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 79, 90 ]
+"values": [ 81, 90 ]
 }
 
 [sub_resource type="Animation" id=10]
 resource_name = "roll"
 length = 1.1
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("spriteNode:frame")
 tracks/0/interp = 1
@@ -149,14 +145,14 @@ script = ExtResource( 2 )
 
 [node name="spriteNode" type="Sprite" parent="."]
 position = Vector2( 0, -12.681 )
-scale = Vector2( 0.261499, 0.261499 )
+scale = Vector2( 0.261, 0.261 )
 texture = ExtResource( 1 )
 normal_map = SubResource( 2 )
 hframes = 10
 vframes = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.905797, -15.0362 )
+position = Vector2( 1.63043, -15.0362 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
