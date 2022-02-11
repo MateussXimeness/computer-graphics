@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/fonts/Cookit-Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/Arciform.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/Scenes/GameOverScreen/GameOverScreen.gd" type="Script" id=3]
+[ext_resource path="res://src/Scenes/GameOverScreen/dead_pxiel-removebg-preview.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.00784314, 0.00784314, 0.00784314, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.384314, 0.0627451, 0.0627451, 1 )
+shadow_size = 30
+
+[sub_resource type="DynamicFont" id=2]
+size = 150
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "YouAreDead"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.536209, 0.307881 ), Vector2( 0.6, 0.6 ), Vector2( 0.5, 0.3 ) ]
+}
+
+[node name="GameOverScreen" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 590.0
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 40
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 964.0
+margin_bottom = 540.0
+custom_constants/separation = 60
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+margin_right = 924.0
+margin_bottom = 180.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "GAME OVER"
+align = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+margin_top = 240.0
+margin_right = 924.0
+margin_bottom = 372.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+margin_left = 383.0
+margin_right = 541.0
+margin_bottom = 132.0
+custom_constants/separation = 40
+
+[node name="restart" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+margin_right = 158.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 3 )
+text = "RESTART"
+
+[node name="quit" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+margin_top = 86.0
+margin_right = 158.0
+margin_bottom = 132.0
+custom_fonts/font = SubResource( 4 )
+text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="YouAreDead" type="Sprite" parent="."]
+position = Vector2( 508.386, 519.089 )
+scale = Vector2( 0.5, 0.3 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="YouAreDead"]
+autoplay = "YouAreDead"
+anims/YouAreDead = SubResource( 5 )
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
