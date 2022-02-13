@@ -1,15 +1,18 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/Actors/EnemyOne/EnemyOne.gd" type="Script" id=1]
-[ext_resource path="res://assets/enemyOneSpriteSheet.png" type="Texture" id=2]
+[ext_resource path="res://src/Actors/EnemyOne/assets/spriteSheet.png" type="Texture" id=2]
 
 [sub_resource type="AnimatedTexture" id=2]
 
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 19.2029, 10 )
+
 [sub_resource type="CircleShape2D" id=5]
-radius = 79.4426
+radius = 98.0074
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.97826, 15.5797 )
+extents = Vector2( 5.97826, 15.1268 )
 
 [sub_resource type="Animation" id=3]
 length = 1.2
@@ -27,9 +30,10 @@ tracks/0/keys = {
 "values": [ 18, 19, 20, 21, 22, 23 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "idle"
+[sub_resource type="Animation" id=8]
+resource_name = "attack"
 length = 1.2
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -40,7 +44,54 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 18, 19, 20, 21, 22, 23 ]
+"values": [ 12, 13, 14, 15, 16, 17 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "fallback"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 18, 19, 20, 21, 22 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "enemyDead"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "idle"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -57,7 +108,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5 ]
+"values": [ 6, 7, 8, 9, 10, 11 ]
 }
 
 [node name="EnemyOne" type="KinematicBody2D"]
@@ -71,26 +122,38 @@ scale = Vector2( 0.188, 0.188 )
 texture = ExtResource( 2 )
 normal_map = SubResource( 2 )
 hframes = 6
-vframes = 8
+vframes = 4
 frame = 18
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="."]
 visible = false
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2( 4.16667, 0 )
+shape = SubResource( 10 )
+
+[node name="DetectRadius" type="Area2D" parent="."]
 visible = false
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
 shape = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1.08696, 2.89855 )
+visible = false
+position = Vector2( 0, 0.452899 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"
 anims/RESET = SubResource( 3 )
-anims/idle = SubResource( 4 )
+anims/attack = SubResource( 8 )
+anims/fallback = SubResource( 9 )
+anims/idle = SubResource( 7 )
 anims/walk = SubResource( 6 )
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_DetectRadius_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_DetectRadius_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_AttackArea_body_exited"]
+[connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
+[connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]
