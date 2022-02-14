@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/knight-roll.png-0e6d6b4067a079e2cff125f060aa97ac.stex"
+path="res://.import/playerSpriteSheet.png-b57adf317b8ff1f23dca69b56cdf9ca0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Actors/Player/assets/knight-roll.png"
-dest_files=[ "res://.import/knight-roll.png-0e6d6b4067a079e2cff125f060aa97ac.stex" ]
+source_file="res://assets/playerSpriteSheet.png"
+dest_files=[ "res://.import/playerSpriteSheet.png-b57adf317b8ff1f23dca69b56cdf9ca0.stex" ]
 
 [params]
 
