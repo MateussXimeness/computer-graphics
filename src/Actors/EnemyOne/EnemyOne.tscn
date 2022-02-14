@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/Actors/EnemyOne/EnemyOne.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/EnemyOne/assets/spriteSheet.png" type="Texture" id=2]
 
 [sub_resource type="AnimatedTexture" id=2]
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 7.06522, 12.1377 )
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 19.2029, 10 )
@@ -46,6 +49,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 12, 13, 14, 15, 16, 17 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("ClubHitArea/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "fallback"
@@ -75,6 +90,23 @@ tracks/1/keys = {
 "args": [  ],
 "method": "enemyDead"
 } ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "hit"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -122,8 +154,16 @@ scale = Vector2( 0.188, 0.188 )
 texture = ExtResource( 2 )
 normal_map = SubResource( 2 )
 hframes = 6
-vframes = 4
+vframes = 5
 frame = 18
+
+[node name="ClubHitArea" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClubHitArea"]
+position = Vector2( 14.3116, -6.15942 )
+shape = SubResource( 12 )
+disabled = true
 
 [node name="AttackArea" type="Area2D" parent="."]
 visible = false
@@ -150,9 +190,11 @@ autoplay = "RESET"
 anims/RESET = SubResource( 3 )
 anims/attack = SubResource( 8 )
 anims/fallback = SubResource( 9 )
+anims/hit = SubResource( 11 )
 anims/idle = SubResource( 7 )
 anims/walk = SubResource( 6 )
 
+[connection signal="body_entered" from="ClubHitArea" to="." method="_on_ClubHitArea_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_AttackArea_body_exited"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
