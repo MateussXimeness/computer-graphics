@@ -11,5 +11,5 @@ func _input(event):
 			$ColorRect/anim_color.play("aniamr_color")
 			yield($ColorRect/anim_color,"animation_finished")
 			print("Mudar De Fase")
-			get_tree().change_scene("res://scenes/Cenário Inicial.tscn")
+			get_tree().change_scene("res://src/Scenes/InitialScene/InitialScene.tscn")
 			

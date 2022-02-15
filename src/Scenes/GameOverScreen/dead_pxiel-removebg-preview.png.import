@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pxArt (30).png-e854176c911eea2c76b37ab0af236aab.stex"
+path="res://.import/dead_pxiel-removebg-preview.png-fb2cb5f412d12cd862545a45db0c36e5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Scenes/Vilarejo/pxArt (30).png"
-dest_files=[ "res://.import/pxArt (30).png-e854176c911eea2c76b37ab0af236aab.stex" ]
+source_file="res://src/Scenes/GameOverScreen/dead_pxiel-removebg-preview.png"
+dest_files=[ "res://.import/dead_pxiel-removebg-preview.png-fb2cb5f412d12cd862545a45db0c36e5.stex" ]
 
 [params]
 
