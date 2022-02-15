@@ -1,0 +1,216 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/fonts/Cookit-Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/Arciform.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/Scenes/GameOverScreen/GameOverScreen.gd" type="Script" id=3]
+[ext_resource path="res://src/Scenes/WinnerScreen/assets/crown-removebg-preview.png" type="Texture" id=4]
+[ext_resource path="res://src/Scenes/WinnerScreen/assets/png-transparent-tree-pixel-art-flaming-sword-sprite-computer-graphics-flame-2d-computer-graphics-line-removebg-preview.png" type="Texture" id=5]
+[ext_resource path="res://src/Scenes/WinnerScreen/assets/yo_win-removebg-preview.png" type="Texture" id=6]
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 150
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.311856, 0.311856 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "crown"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.311856, 0.311856 ), Vector2( 0.4, 0.4 ), Vector2( 0.312, 0.312 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.311856, 0.311856 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "crown"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.6, 0.6 ), Vector2( 0.5, 0.5 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.311856, 0.311856 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "crown"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.3, 0.3 ), Vector2( 0.4, 0.4 ), Vector2( 0.3, 0.3 ) ]
+}
+
+[node name="GameOverScreen" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 40
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 984.0
+margin_bottom = 560.0
+custom_constants/separation = 60
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+margin_right = 944.0
+margin_bottom = 180.0
+custom_colors/font_color = Color( 0.12549, 1, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "WINNER"
+align = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+margin_top = 240.0
+margin_right = 944.0
+margin_bottom = 372.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+margin_left = 396.0
+margin_right = 548.0
+margin_bottom = 132.0
+custom_constants/separation = 40
+
+[node name="restart" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+margin_right = 152.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 3 )
+text = "RESTART"
+
+[node name="quit" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+margin_top = 86.0
+margin_right = 152.0
+margin_bottom = 132.0
+custom_fonts/font = SubResource( 4 )
+text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Crown" type="Sprite" parent="."]
+position = Vector2( 192, 346 )
+scale = Vector2( 0.311856, 0.311856 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Crown"]
+autoplay = "crown"
+anims/RESET = SubResource( 6 )
+anims/crown = SubResource( 7 )
+
+[node name="Sword" type="Sprite" parent="."]
+position = Vector2( 847, 342 )
+scale = Vector2( 0.311856, 0.311856 )
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sword"]
+autoplay = "crown"
+anims/RESET = SubResource( 8 )
+anims/crown = SubResource( 9 )
+
+[node name="YouWin" type="Sprite" parent="."]
+position = Vector2( 502, 511 )
+scale = Vector2( 0.311856, 0.311856 )
+texture = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="YouWin"]
+autoplay = "crown"
+anims/RESET = SubResource( 10 )
+anims/crown = SubResource( 11 )
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

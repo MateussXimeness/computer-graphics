@@ -77,8 +77,8 @@ custom_constants/separation = 60
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
 margin_right = 924.0
 margin_bottom = 180.0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "GAME OVER"
 align = 1
 
@@ -88,20 +88,20 @@ margin_right = 924.0
 margin_bottom = 372.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
-margin_left = 383.0
-margin_right = 541.0
+margin_left = 386.0
+margin_right = 538.0
 margin_bottom = 132.0
 custom_constants/separation = 40
 
 [node name="restart" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
-margin_right = 158.0
+margin_right = 152.0
 margin_bottom = 46.0
 custom_fonts/font = SubResource( 3 )
 text = "RESTART"
 
 [node name="quit" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
 margin_top = 86.0
-margin_right = 158.0
+margin_right = 152.0
 margin_bottom = 132.0
 custom_fonts/font = SubResource( 4 )
 text = "QUIT"
@@ -117,5 +117,6 @@ texture = ExtResource( 4 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="YouAreDead"]
 autoplay = "YouAreDead"
 anims/YouAreDead = SubResource( 5 )
+
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
