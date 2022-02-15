@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dead_pxiel-removebg-preview.png-fb2cb5f412d12cd862545a45db0c36e5.stex"
+path="res://.import/crown-removebg-preview.png-d1102dbd1813a2a9b36caaebb508e563.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Scenes/GameOverScreen/dead_pxiel-removebg-preview.png"
-dest_files=[ "res://.import/dead_pxiel-removebg-preview.png-fb2cb5f412d12cd862545a45db0c36e5.stex" ]
+source_file="res://src/Scenes/WinnerScreen/assets/crown-removebg-preview.png"
+dest_files=[ "res://.import/crown-removebg-preview.png-d1102dbd1813a2a9b36caaebb508e563.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
