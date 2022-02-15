@@ -33,6 +33,10 @@ func _on_DetectRadius_body_exited(_body):
 	bodyDetected = null
 	state = State.IDLE
 
+func _on_ClubHitArea_area_entered(area):
+	if area.is_in_group("hurtbox"):
+		area.owner.takeDamage(self.damage)
+
 func _on_AttackArea_body_entered(_body):
 	state = State.ATTACK
 
@@ -40,8 +44,8 @@ func _on_AttackArea_body_exited(_body):
 	state = State.WALK
 
 # This is the function that will be called by the damage logic to apply damage to the enemy
-func loseLife(healthPoints):
-	life -= healthPoints
+func takeDamage(amount: int):
+	life -= amount
 	if life <= 0:
 		state = State.FALLBACK
 	else:
@@ -101,6 +105,3 @@ func flipScale():
 	_sprite.scale.x *= -1
 	_collision.scale.x *= -1
 	_clubCollision.scale.x *= -1
-
-func _on_ClubHitArea_body_entered(body):
-	body.queue_free()
