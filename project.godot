@@ -15,29 +15,25 @@ _global_script_classes=[ {
 "path": "res://src/Actors/Actor.gd"
 }, {
 "base": "Actor",
-"class": "Player",
+"class": "EnemyOne",
 "language": "GDScript",
-"path": "res://src/Actors/Player/Player.gd"
+"path": "res://src/Actors/EnemyOne/EnemyOne.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
-"Player": ""
+"EnemyOne": ""
 }
 
 [application]
 
 config/name="Computação Grafica"
-run/main_scene="res://scenes/Mundo.tscn"
+run/main_scene="res://src/Scenes/TestLevel/TestLevel.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
-
-[global]
-
-keyboard=false
 
 [input]
 
@@ -57,22 +53,6 @@ jump={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777232,"unicode":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":87,"unicode":0,"echo":false,"script":null)
- ]
-}
-roll={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777234,"unicode":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":83,"unicode":0,"echo":false,"script":null)
- ]
-}
-attack={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":90,"unicode":0,"echo":false,"script":null)
- ]
-}
-defend={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":88,"unicode":0,"echo":false,"script":null)
  ]
 }
 
