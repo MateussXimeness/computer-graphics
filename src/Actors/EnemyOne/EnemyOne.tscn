@@ -5,15 +5,6 @@
 
 [sub_resource type="AnimatedTexture" id=2]
 
-[sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 7.06522, 12.1377 )
-
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 19.2029, 10 )
-
-[sub_resource type="CircleShape2D" id=5]
-radius = 98.0074
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.97826, 15.1268 )
 
@@ -143,6 +134,15 @@ tracks/0/keys = {
 "values": [ 6, 7, 8, 9, 10, 11 ]
 }
 
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 8.15218, 12.1377 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 18.6594, 10 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 98.0074
+
 [node name="EnemyOne" type="KinematicBody2D"]
 scale = Vector2( 5.52, 5.52 )
 collision_layer = 2
@@ -157,31 +157,7 @@ hframes = 6
 vframes = 5
 frame = 18
 
-[node name="ClubHitArea" type="Area2D" parent="."]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ClubHitArea"]
-position = Vector2( 14.3116, -6.15942 )
-shape = SubResource( 12 )
-disabled = true
-
-[node name="AttackArea" type="Area2D" parent="."]
-visible = false
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( 4.16667, 0 )
-shape = SubResource( 10 )
-
-[node name="DetectRadius" type="Area2D" parent="."]
-visible = false
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
-shape = SubResource( 5 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, 0.452899 )
 shape = SubResource( 1 )
 
@@ -194,7 +170,39 @@ anims/hit = SubResource( 11 )
 anims/idle = SubResource( 7 )
 anims/walk = SubResource( 6 )
 
-[connection signal="body_entered" from="ClubHitArea" to="." method="_on_ClubHitArea_body_entered"]
+[node name="ClubHitArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClubHitArea"]
+position = Vector2( 14.1304, -5.97826 )
+shape = SubResource( 12 )
+disabled = true
+
+[node name="HurtboxArea" type="Area2D" parent="." groups=["hurtbox"]]
+visible = false
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxArea"]
+position = Vector2( 0, 0.36232 )
+shape = SubResource( 1 )
+
+[node name="AttackArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2( 3.62319, 0 )
+shape = SubResource( 10 )
+
+[node name="DetectRadius" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
+shape = SubResource( 5 )
+
+[connection signal="area_entered" from="ClubHitArea" to="." method="_on_ClubHitArea_area_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_AttackArea_body_exited"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
