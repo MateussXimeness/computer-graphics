@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/knight-defend.png-078773d77eb9386f0c15ce357ef90efe.stex"
+path="res://.import/playerSpriteSheet.png-b57adf317b8ff1f23dca69b56cdf9ca0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Actors/Player/assets/knight-defend.png"
-dest_files=[ "res://.import/knight-defend.png-078773d77eb9386f0c15ce357ef90efe.stex" ]
+source_file="res://assets/playerSpriteSheet.png"
+dest_files=[ "res://.import/playerSpriteSheet.png-b57adf317b8ff1f23dca69b56cdf9ca0.stex" ]
 
 [params]
 
