@@ -1,12 +1,12 @@
 extends Actor
 class_name Player
 
-enum State { IDLE = 0, JUMP, RUN, ROLL, ATTACK, DEFEND, DEATH }
-enum Direction { LEFT = 0, RIGHT , IN_PLACE }
+enum State { IDLE = 0, JUMP, RUN, ROLL, ATTACK, DEFEND, DEAD }
+enum Direction { LEFT = 0, RIGHT }
 
-export var life: int = 5
-export var defence: int = 10
-export var damage: int = 8
+export var life: int = 1
+export var defence: int = 2
+export var damage: int = 3
 
 var state: int = State.IDLE
 var direction: int = Direction.RIGHT
@@ -27,45 +27,77 @@ const run: String = "run"
 func _ready():
 	_animation.play("idle")
 
-func _input(event):
-	if !is_on_floor():
+func _on_SwordHitArea_area_entered(area):
+	if state != State.ATTACK:
 		return
 
+	if area.is_in_group("hurtbox"):
+		area.owner.takeDamage(self.damage)
+
+func takeDamage(amount: int):
+	var newLife = self.life
+
+	if self.state == State.DEFEND:
+		var remainingDamage = amount - defence
+		newLife -= remainingDamage if remainingDamage > 0 else 0
+	else:
+		newLife -= amount
+
+	self.life = newLife
+	if self.life <= 0:
+		self.state = State.DEAD
+		_animation.play("death")
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if self.state == State.DEAD:
+		_gameOver()
+		return
+	if self.state != State.DEFEND:
+		_resetSprite()
+	
+func _gameOver():
+	queue_free()
+
+func _input(event):
 	if event.is_action_released("defend"):
 		_resetSprite()
 		return
 
-	if state == State.DEFEND:
+	if !is_on_floor() or self.state == State.DEAD or state == State.DEFEND or state == State.ROLL or self.state == State.JUMP:
 		return
 
-	if event.is_action_pressed(jump):
-		_changeAnimation(jump)
+	if event.is_action_pressed("jump"):
+		_changeAnimation("jump")
 		state = State.JUMP
-	elif event.get_action_strength("moveLeft") and state != State.ROLL:
+	elif event.is_action_pressed(roll):
+		_changeAnimation("roll")
+		state = State.ROLL
+	if event.get_action_strength("moveLeft") > event.get_action_strength("moveRight") and state != State.ROLL:
 		state = State.RUN
 		_changeAnimation(run)
 		_changeDirection(Direction.LEFT)
-	elif event.get_action_strength("moveRight") and state != State.ROLL:
+	elif event.get_action_strength("moveRight") > event.get_action_strength("moveLeft") and state != State.ROLL:
 		state = State.RUN
 		_changeAnimation(run)
 		_changeDirection(Direction.RIGHT)
-	elif event.is_action_pressed(roll):
-		_changeAnimation(roll)
-		state = State.ROLL
-	elif event.get_action_strength("attack") > 0:
+	elif event.is_action_released("moveLeft") or event.is_action_released("moveRight"):
+		_resetSprite()
+	elif event.get_action_strength(attack) > 0 and state != State.DEAD:
 		_changeAnimation(attack)
 		state = State.ATTACK
-	elif event.is_action_pressed("defend"):
+	elif event.is_action_pressed(defend):
 		_changeAnimation(defend)
 		state = State.DEFEND
 	else:
-		_changeDirection(Direction.IN_PLACE)
-		_changeAnimation(idle)
-		state = State.IDLE
-
-	_normalizeSpriteDirection()
+		if event is InputEventKey:
+			if !event.pressed:
+				_resetSprite()
 
 func _physics_process(delta: float) -> void:
+	if state == State.DEAD:
+		_animation.play("death")
+		return
+		
 	if state == State.DEFEND:
 		return
 
@@ -89,7 +121,7 @@ func _getVelocity(linearVelocity: Vector2, directionVector: Vector2, speed: Vect
 	return newVelocity
 
 func _changeAnimation(animationName: String):
-	if animationName == _currentAnimationName:
+	if animationName == _currentAnimationName or state == State.DEAD:
 		return
 
 	_animation.play(animationName)
@@ -101,29 +133,18 @@ func _changeDirection(newDirection: int):
 
 	direction = newDirection
 
-func _normalizeSpriteDirection():
-	if direction == Direction.IN_PLACE:
-		return
-
 	var root = _animation.owner
-	if (root.scale.x > 0 and direction == Direction.LEFT) or (root.scale.x < 0 and direction == Direction.RIGHT):
-		root.scale.x *= -1
-
-func _defend():
-	_animation.stop()
-	_changeDirection(Direction.IN_PLACE)
+	root.scale.x *= -1
 
 func _resetSprite():
-	var isMovingRight = Input.is_action_pressed("moveRight")
-	var isMovingLeft = Input.is_action_pressed("moveLeft")
+	var movingRightStrength = Input.get_action_strength("moveRight")
+	var movingLeftStrength = Input.get_action_strength("moveLeft")
 
-	if isMovingRight and isMovingLeft:
+	if movingRightStrength > 0 or movingLeftStrength > 0:
+		state = State.RUN
+		_animation.play("run")
+		_changeDirection(Direction.RIGHT if movingRightStrength > movingLeftStrength else Direction.LEFT)
+	else:
 		state = State.IDLE
 		_changeAnimation(idle)
-		_changeDirection(Direction.IN_PLACE)
 		return
-
-	state = State.RUN
-	_animation.play("run")
-	_changeDirection(Direction.RIGHT if isMovingRight else Direction.LEFT)
-	_normalizeSpriteDirection()
