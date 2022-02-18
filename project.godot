@@ -26,8 +26,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
-"Player": "",
-"EnemyOne": ""
+"EnemyOne": "",
+"Player": ""
 }
 
 [application]
@@ -43,6 +43,7 @@ window/stretch/aspect="keep"
 
 [global]
 
+keyboard=false
 complete=false
 
 [input]
