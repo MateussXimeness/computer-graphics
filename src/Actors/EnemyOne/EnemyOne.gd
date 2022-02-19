@@ -26,22 +26,26 @@ func _physics_process(_delta) -> void:
 	chooseAction()
 
 func _on_DetectRadius_body_entered(body):
-	bodyDetected = body
-	state = State.WALK
+	if body is Player:
+		bodyDetected = body
+		state = State.WALK
 
-func _on_DetectRadius_body_exited(_body):
-	bodyDetected = null
-	state = State.IDLE
+func _on_DetectRadius_body_exited(body):
+	if body is Player:
+		bodyDetected = null
+		state = State.IDLE
 
 func _on_ClubHitArea_area_entered(area):
 	if area.is_in_group("hurtbox"):
 		area.owner.takeDamage(self.damage)
 
-func _on_AttackArea_body_entered(_body):
-	state = State.ATTACK
+func _on_AttackArea_body_entered(body):
+	if body is Player:
+		state = State.ATTACK
 
-func _on_AttackArea_body_exited(_body):
-	state = State.WALK
+func _on_AttackArea_body_exited(body):
+	if body is Player:
+		state = State.WALK
 
 # This is the function that will be called by the damage logic to apply damage to the enemy
 func takeDamage(amount: int):
@@ -96,7 +100,11 @@ func enemyDead():
 		queue_free()
 
 func getDirection() -> Vector2:
-	return Vector2(bodyDetected.position.x - self.position.x, 1.0).normalized()
+	if bodyDetected != null:
+		var directionX = Vector2(bodyDetected.position.x - self.position.x, 0.0).normalized()
+		var directionY = Vector2(0, 1.0)
+		return directionX + directionY
+	return Vector2(0, 1.0)
 
 func changeAnimation(animationName: String):
 	_animationPlayer.play(animationName)
