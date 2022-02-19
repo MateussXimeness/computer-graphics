@@ -84,7 +84,6 @@ func enemyWalk():
 		flipScale()
 	velocity = enemySpeed * direction
 	velocity = move_and_slide(velocity)
-	print(velocity)
 
 func enemyAttack():
 	changeAnimation(attack)
@@ -103,7 +102,7 @@ func enemyDead():
 func getDirection() -> Vector2:
 	if bodyDetected != null:
 		var directionX = Vector2(bodyDetected.position.x - self.position.x, 0.0).normalized()
-		var directionY: Vector2 = Vector2(0, 1.0)
+		var directionY = Vector2(0, 1.0)
 		return directionX + directionY
 	return Vector2(0, 1.0)
 
