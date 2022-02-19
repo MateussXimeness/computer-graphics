@@ -28,7 +28,6 @@
 [ext_resource path="res://assets/cave/Assets 1024 Cave/Cave - Floor.png" type="Texture" id=26]
 [ext_resource path="res://assets/Scenes/scene1.png" type="Texture" id=27]
 [ext_resource path="res://src/Actors/Player/Player.tscn" type="PackedScene" id=28]
-[ext_resource path="res://src/Actors/EnemyOne/EnemyOne.tscn" type="PackedScene" id=29]
 
 [sub_resource type="RectangleShape2D" id=43]
 extents = Vector2( 64, 5.5 )
@@ -760,6 +759,9 @@ points = PoolVector2Array( 160, 56, 80, 248, 0, 0, 168, 0 )
 [sub_resource type="RectangleShape2D" id=47]
 extents = Vector2( 33.0156, 193.75 )
 
+[sub_resource type="RectangleShape2D" id=58]
+extents = Vector2( 10, 325 )
+
 [node name="Scene2" type="Node2D"]
 
 [node name="scene" type="Node2D" parent="."]
@@ -909,14 +911,6 @@ region_rect = Rect2( 1867, 859, 124, 378 )
 position = Vector2( 156, 163 )
 scale = Vector2( 3.42, 3.42 )
 
-[node name="EnemyOne" parent="." instance=ExtResource( 29 )]
-position = Vector2( 2750, 289 )
-scale = Vector2( 3.52, 3.52 )
-
-[node name="EnemyOne2" parent="." instance=ExtResource( 29 )]
-position = Vector2( 3031, 230 )
-scale = Vector2( 3.52, 3.52 )
-
 [node name="StaticBody2D7" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
@@ -928,3 +922,15 @@ shape = SubResource( 47 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D8"]
 position = Vector2( 2446, 189.25 )
 shape = SubResource( 47 )
+
+[node name="LeftCorner" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCorner"]
+position = Vector2( 0, 315 )
+shape = SubResource( 58 )
+
+[node name="RightCorner" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCorner"]
+position = Vector2( 3074, 328 )
+shape = SubResource( 58 )
