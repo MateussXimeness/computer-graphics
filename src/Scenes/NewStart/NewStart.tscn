@@ -1,0 +1,107 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/fonts/Arciform.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/Scenes/NewStart/NewStart.gd" type="Script" id=2]
+[ext_resource path="res://src/Scenes/NewStart/assets/pixel2.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.0745098, 0.0705882, 0.0705882, 1 )
+shadow_size = 40
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+outline_color = Color( 1, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+font_data = ExtResource( 1 )
+
+[node name="NewStart" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 590.0
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 40
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 964.0
+margin_bottom = 540.0
+custom_constants/separation = 86
+
+[node name="Título" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+margin_right = 924.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "JOGO SEM NOME"
+align = 1
+valign = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 964.0
+margin_bottom = 540.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/CenterContainer"]
+margin_left = 394.0
+margin_top = 179.0
+margin_right = 530.0
+margin_bottom = 321.0
+custom_constants/separation = 50
+
+[node name="START" type="Button" parent="PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+margin_right = 136.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 3 )
+text = " START "
+
+[node name="QUIT" type="Button" parent="PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 96.0
+margin_right = 136.0
+margin_bottom = 142.0
+custom_fonts/font = SubResource( 4 )
+text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 533.969, 513.788 )
+scale = Vector2( 1.22473, 0.924284 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/CenterContainer/VBoxContainer/START" to="." method="_on_START_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/CenterContainer/VBoxContainer/QUIT" to="." method="_on_QUIT_pressed"]
