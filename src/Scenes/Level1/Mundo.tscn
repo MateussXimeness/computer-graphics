@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=2]
+[gd_scene load_steps=81 format=2]
 
 [ext_resource path="res://assets/Scenes/Free-Market-Cartoon-2D-Game-Tileset4-720x480-removebg-preview (1).png" type="Texture" id=1]
 [ext_resource path="res://assets/Scenes/clouds.png" type="Texture" id=2]
@@ -28,6 +28,8 @@
 [ext_resource path="res://assets/cave/Assets 1024 Cave/Cave - Floor.png" type="Texture" id=26]
 [ext_resource path="res://assets/Scenes/scene1.png" type="Texture" id=27]
 [ext_resource path="res://src/Actors/Player/Player.tscn" type="PackedScene" id=28]
+[ext_resource path="res://src/Actors/EnemyOne/EnemyOne.tscn" type="PackedScene" id=29]
+[ext_resource path="res://src/Scenes/Level1/Mundo.gd" type="Script" id=30]
 
 [sub_resource type="RectangleShape2D" id=43]
 extents = Vector2( 64, 5.5 )
@@ -763,6 +765,7 @@ extents = Vector2( 33.0156, 193.75 )
 extents = Vector2( 10, 325 )
 
 [node name="Scene2" type="Node2D"]
+script = ExtResource( 30 )
 
 [node name="scene" type="Node2D" parent="."]
 z_index = -10
@@ -910,6 +913,9 @@ region_rect = Rect2( 1867, 859, 124, 378 )
 [node name="Player" parent="." instance=ExtResource( 28 )]
 position = Vector2( 156, 163 )
 scale = Vector2( 3.42, 3.42 )
+
+[node name="EnemyOne" parent="." instance=ExtResource( 29 )]
+position = Vector2( 949, 141 )
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="."]
 
