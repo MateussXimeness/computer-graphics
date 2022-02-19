@@ -26,6 +26,7 @@ const run: String = "run"
 
 func _ready():
 	_animation.play("idle")
+	_sprite.z_index = 10000
 
 func _on_SwordHitArea_area_entered(area):
 	if state != State.ATTACK:
