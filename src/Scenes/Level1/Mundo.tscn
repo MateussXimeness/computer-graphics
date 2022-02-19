@@ -915,7 +915,12 @@ position = Vector2( 156, 163 )
 scale = Vector2( 3.42, 3.42 )
 
 [node name="EnemyOne" parent="." instance=ExtResource( 29 )]
-position = Vector2( 949, 141 )
+position = Vector2( 2745, 276 )
+scale = Vector2( 3.52, 3.52 )
+
+[node name="EnemyTwo" parent="." instance=ExtResource( 29 )]
+position = Vector2( 3027, 254 )
+scale = Vector2( 3.52, 3.52 )
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="."]
 
